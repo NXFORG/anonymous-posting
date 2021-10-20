@@ -8,8 +8,7 @@ server.use(express.json());
 const posts = require('./controllers/post')
 const users = require('./controllers/user')
 
-
-server.use('/posts/:pid', posts.show)
+server.use('/posts/:uid/:pid', posts.show)
 server.use('/users/:uid', users.show)
 server.use('/posts', posts.index)
 server.use('/create', posts.create)

@@ -29,7 +29,7 @@ class Post {
         return new Promise (async (resolve, reject) => {
             try {
                 let postQuery = await db.query(`SELECT posts.*, users.name as user_name FROM posts JOIN users on posts.id = $1;`, [id])
-                let  post = new Post(postQuery.rows[0])
+                let post = new Post(postQuery.rows[0])
                 resolve(post)
             } catch (err) {
                 reject('post does not exist')
