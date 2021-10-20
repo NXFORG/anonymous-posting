@@ -1,4 +1,5 @@
 const Post = require('../models/posts')
+const User= require('../models/users')
 
 async function show (req,res){
     try {
