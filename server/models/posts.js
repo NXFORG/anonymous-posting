@@ -48,6 +48,19 @@ class Post {
             }
         })
     }
+    static posts(id, userid){
+        return new Promise (async (resolve,reject) => {
+            try {
+                const postData = await db.query('SELECT posts.id, posts.title, posts.name, posts.body, users.name AS user_name, users.id AS user_id FROM posts JOIN users on users.id = posts.user_id WHERE posts.id = $1 AND users.id = $2;',[id, userid])
+                console.log(postData)
+                const post = new Post(postData.rows[0])
+                resolve(post)
+            } catch (err) {
+                reject('could not find post')
+            }
+        })
+    }
 }
+
 
 module.exports = Post
