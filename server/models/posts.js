@@ -41,7 +41,7 @@ class Post {
             try {
                 let {title, name, body} = postData
                 let user = await User.findUser(name);
-                let insertPost = await db.query(`INSERT INTO posts (title, name, body, user_id) values ($1, $2, $3, $4)`,[title, name, body,user.id])
+                let insertPost = await db.query(`INSERT INTO posts (title, name, body, user_id) values ($1, $2, $3, $4) RETURNING *;`,[title, name, body,user.id])
                 resolve(insertPost)
             } catch (err) {
                 reject('post could not be created')
@@ -61,6 +61,5 @@ class Post {
         })
     }
 }
-
 
 module.exports = Post
