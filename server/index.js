@@ -1,0 +1,2 @@
+
+router.get('/:uid/:pid')
